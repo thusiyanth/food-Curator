@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: food-order-system
+  profiles:
+    active: dev
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:dGhpc0lzQVZlcnlTZWN1cmVKd3RTZWNyZXRLZXlGb3JGb29kT3JkZXJTeXN0ZW0yMDI0}
+  expiration: 86400000  # 24 hours in ms
+
+# File Upload
+file:
+  upload-dir: ./uploads
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.culinary.foodorder: DEBUG
+    org.springframework.security: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/food-order.log
